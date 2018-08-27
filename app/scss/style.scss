@@ -9,19 +9,47 @@ html{
     margin:0;
     padding:0;
 }
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    min-width: 1024px;
+}
 
 $header-height: 120px;
 .header{
-    font-size: 2em;
     text-align: center;
     width:100%;
     height: $header-height;
     position: fixed;
-    background-color: blanchedalmond
+    background-color: blanchedalmond;
+    .title{
+        font-size: 2em;
+    }
+    .description{
+        margin:10px 50px;
+    }
 }
 .header-padding{
     position: relative;
     height: $header-height;
+}
+
+.menu{
+    ul{
+
+    }
+    li{list-style: none;
+    display: inline;
+    width:60px;
+    margin: 0px 10px;
+    padding: 0px 10px;
+    border: 2px;
+    border-color: black;
+    border-style: dashed;
+    background-color: aquamarine;}
 }
 
 .items {width: 40%;

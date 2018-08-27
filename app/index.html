@@ -6,6 +6,9 @@
 	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 	<div id="root">
@@ -19,12 +22,22 @@
 			//const element = React.createElement('bean',
 			// {className: 'container', children: arrayOfThings
 			// })
-			class Header extends React.Component{
+			//buld a fixed header
+			class HeaderFixed extends React.Component{
 				render() {
 					return(
 						<div>
 							<div className="header">
-							{'***-' + this.props.name + '-***'}</div>
+								<span className="title">{'***-' + this.props.name + '-***'}</span>
+								<p className="description">{this.props.description}</p>
+								<ul className="menu">
+									<li>menu</li>
+									<li>menu</li>
+									<li>menu</li>
+									<li>menu</li>
+								</ul>
+							</div>
+							
 							<div className="header-padding"></div>
 							
 						</div>
@@ -32,6 +45,7 @@
 				}
 			}
 			
+			//build a list item
 			class Lister extends React.Component {
 
 				static propTypes = {
@@ -48,7 +62,6 @@
 								<li>{'description >> ' + this.props.description}</li>
 								<li>{'price >> ' + this.props.children}</li>
 								<li>{this.props.list}</li>
-								<li></li>
 							</ul>
 						</div>
 					)
@@ -63,21 +76,18 @@
 						</div>
 					)
 				}
-			
 			}
 			
-			function listTime() {
+			function build() {
 			const time = new Date().toLocaleTimeString()
 				const element = (
 					<div className="container">
-						<Header name='A Website with react'></Header>
+						<HeaderFixed name='A Website with react' description='a fixed header'></HeaderFixed>
 						<p>home >> some category</p>
 						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
-						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
-						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
-						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
-						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
+						
 						<Clocky timer={time}></Clocky>
+						<GenerateList items={anylist}/>
 						
 						
 					</div>
@@ -97,14 +107,32 @@
 			const arrayOfThings = ['beans','apples','grapes']
 			const arrayOfThings2 = ['beans','apples','grapes']
 			const content = arrayOfThings
+
+			function GenerateList (props) {
+				const items = props.items;
+				const itemList = items.map((item) =>
+					<Lister key={item.name.toString()}name={item.name} description={item.description}>{item.price}</Lister>//<li>{item}</li>
+				);
+				return (
+					<ul className="itemList">{itemList}</ul>
+				);
+			}
+			const itemsConst = [1, 2, 3, 4, 5];
+			var anylist = [
+				{name : 'tshirt 1',description : 'item 1',price : 25},
+				{name : 'tshirt 2',description : 'item 2',price : 25},
+				{name : 'tshirt 3',description : 'item 3',price : 25},
+				{name : 'tshirt 4',description : 'item 4',price : 25}
+			];
 			
 			function ren(){
 			
-				listTime()
-			}
+				build();
+
+			};
 			
-			ren()
-			setInterval(ren, 1000)
+			ren();
+			setInterval(ren, 1000);
 			
 
 		</script>
