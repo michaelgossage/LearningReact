@@ -1,0 +1,117 @@
+<html>
+<head>
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="root">
+		<script type="text/babel">
+			const rootElement = document.getElementById('root')
+			//const element = document.createElement('div')
+			//element.textContent = 'Hello'
+			//element.className = 'container'
+			//rootElement.appendChild(element)
+			
+			//const element = React.createElement('bean',
+			// {className: 'container', children: arrayOfThings
+			// })
+			class Header extends React.Component{
+				render() {
+					return(
+						<div>
+							<div className="header">
+							{'***-' + this.props.name + '-***'}</div>
+							<div className="header-padding"></div>
+							
+						</div>
+					)
+				}
+			}
+			
+			class Lister extends React.Component {
+
+				static propTypes = {
+					name: PropTypes.string,
+				}
+				render() {
+					
+					return (
+						
+						<div className="items">
+							<h1>{this.props.name}</h1>
+								<img src="images/001.jpeg"></img>
+							<ul>
+								<li>{'description >> ' + this.props.description}</li>
+								<li>{'price >> ' + this.props.children}</li>
+								<li>{this.props.list}</li>
+								<li></li>
+							</ul>
+						</div>
+					)
+				}
+			}
+				
+			class Clocky extends React.Component {
+				render() {
+					return(
+						<div>
+							<h2>{this.props.timer}</h2>
+						</div>
+					)
+				}
+			
+			}
+			
+			function listTime() {
+			const time = new Date().toLocaleTimeString()
+				const element = (
+					<div className="container">
+						<Header name='A Website with react'></Header>
+						<p>home >> some category</p>
+						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
+						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
+						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
+						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
+						<Lister name='the list' description='some description'list={arrayOfThings}>hi</Lister>
+						<Clocky timer={time}></Clocky>
+						
+						
+					</div>
+				)
+
+			ReactDOM.render(element, rootElement)
+
+			}
+			
+			const Listing = props => (
+			<ul>{props.name}
+				<li>{props.children + ' _ numero uno'}</li>
+				<li>{props.children + '-ayo'}</li>
+			</ul>
+			)
+			
+			const arrayOfThings = ['beans','apples','grapes']
+			const arrayOfThings2 = ['beans','apples','grapes']
+			const content = arrayOfThings
+			
+			function ren(){
+			
+				listTime()
+			}
+			
+			ren()
+			setInterval(ren, 1000)
+			
+
+		</script>
+	</div>
+
+	
+</body>
+
+</html>
+
